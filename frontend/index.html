@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- AUTH SECTION -->
+  <div id="auth-section" class="card">
+    <div class="logo">✅ Task Manager</div>
+
+    <!-- Login Form -->
+    <div id="login-form">
+      <h2>Welcome back</h2>
+      <div class="form-group">
+        <label>Username</label>
+        <input id="login-username" type="text" placeholder="Enter username" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input id="login-password" type="password" placeholder="Enter password" />
+      </div>
+      <button class="btn btn-primary full-width" onclick="login()">Login</button>
+      <p class="switch-link">No account? <a href="#" onclick="showRegister()">Register here</a></p>
+      <p id="login-error" class="error-msg"></p>
+    </div>
+
+    <!-- Register Form -->
+    <div id="register-form" style="display:none">
+      <h2>Create account</h2>
+      <div class="form-group">
+        <label>Email</label>
+        <input id="reg-email" type="email" placeholder="you@example.com" />
+      </div>
+      <div class="form-group">
+        <label>Username</label>
+        <input id="reg-username" type="text" placeholder="Choose a username" />
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input id="reg-password" type="password" placeholder="Min 6 characters" />
+      </div>
+      <button class="btn btn-primary full-width" onclick="register()">Register</button>
+      <p class="switch-link">Have an account? <a href="#" onclick="showLogin()">Login</a></p>
+      <p id="register-error" class="error-msg"></p>
+    </div>
+  </div>
+
+  <!-- APP SECTION -->
+  <div id="app-section" style="display:none">
+    <header class="app-header">
+      <div class="header-left">
+        <span class="logo-small">✅ Task Manager</span>
+        <span id="welcome-msg" class="welcome"></span>
+      </div>
+      <button class="btn btn-outline" onclick="logout()">Logout</button>
+    </header>
+
+    <div class="app-body">
+      <!-- Create Task -->
+      <div class="card create-card">
+        <h3>New Task</h3>
+        <div class="form-group">
+          <input id="task-title" type="text" placeholder="Task title (required)" />
+        </div>
+        <div class="form-group">
+          <input id="task-desc" type="text" placeholder="Description (optional)" />
+        </div>
+        <button class="btn btn-primary" onclick="createTask()">+ Add Task</button>
+        <p id="create-error" class="error-msg"></p>
+      </div>
+
+      <!-- Filter -->
+      <div class="filter-bar">
+        <span>Filter:</span>
+        <button class="filter-btn active" id="filter-all" onclick="setFilter('')">All</button>
+        <button class="filter-btn" id="filter-pending" onclick="setFilter('false')">Pending</button>
+        <button class="filter-btn" id="filter-done" onclick="setFilter('true')">Completed</button>
+      </div>
+
+      <!-- Task List -->
+      <div id="task-list"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination" style="display:none">
+        <button class="btn btn-outline btn-sm" onclick="changePage(-1)" id="prev-btn">◀ Prev</button>
+        <span id="page-info" class="page-info"></span>
+        <button class="btn btn-outline btn-sm" onclick="changePage(1)" id="next-btn">Next ▶</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

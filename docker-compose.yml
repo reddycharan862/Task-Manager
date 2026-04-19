@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./frontend:/app/../frontend:ro   # serve frontend from same container
+      - db_data:/app                     # persist SQLite file
+    restart: unless-stopped
+
+volumes:
+  db_data:

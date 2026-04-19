@@ -1,0 +1,240 @@
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ── Auth Section ── */
+#auth-section {
+  max-width: 420px;
+  margin: 60px auto;
+  padding: 40px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+  color: #4f46e5;
+}
+
+/* ── Card ── */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px;
+}
+
+h2 { font-size: 1.4rem; margin-bottom: 20px; color: #111; }
+h3 { font-size: 1.1rem; margin-bottom: 16px; color: #333; }
+
+/* ── Form ── */
+.form-group { margin-bottom: 14px; }
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+input:focus { border-color: #4f46e5; }
+
+/* ── Buttons ── */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary { background: #4f46e5; color: #fff; }
+.btn-primary:hover { background: #4338ca; }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid #4f46e5;
+  color: #4f46e5;
+}
+.btn-outline:hover { background: #eef2ff; }
+
+.btn-danger { background: #ef4444; color: #fff; border: none; }
+.btn-danger:hover { background: #dc2626; }
+
+.btn-success { background: #22c55e; color: #fff; border: none; }
+.btn-success:hover { background: #16a34a; }
+
+.btn-sm { padding: 6px 14px; font-size: 0.82rem; }
+.btn-undo { background: #f59e0b; color: #fff; border: none; border-radius: 6px; padding: 5px 12px; font-size: 0.8rem; cursor: pointer; font-weight: 600; }
+.btn-undo:hover { background: #d97706; }
+
+.full-width { width: 100%; margin-top: 4px; }
+
+/* ── Switch link ── */
+.switch-link { text-align: center; margin-top: 16px; font-size: 0.88rem; color: #666; }
+.switch-link a { color: #4f46e5; text-decoration: none; font-weight: 600; }
+
+/* ── Error ── */
+.error-msg { color: #ef4444; font-size: 0.85rem; margin-top: 10px; min-height: 18px; }
+
+/* ── App Header ── */
+.app-header {
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.header-left { display: flex; align-items: center; gap: 16px; }
+.logo-small { font-size: 1.2rem; font-weight: 700; color: #4f46e5; }
+.welcome { font-size: 0.88rem; color: #666; }
+
+/* ── App Body ── */
+.app-body { max-width: 720px; margin: 32px auto; padding: 0 16px; }
+
+.create-card { margin-bottom: 20px; }
+.create-card .btn { margin-top: 4px; }
+
+/* ── Filter Bar ── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-size: 0.88rem;
+  color: #666;
+}
+
+.filter-btn {
+  background: #f3f4f6;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  padding: 5px 16px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover { border-color: #4f46e5; color: #4f46e5; }
+.filter-btn.active { background: #4f46e5; color: #fff; border-color: #4f46e5; }
+
+/* ── Task Items ── */
+.task-item {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  border-left: 4px solid #4f46e5;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  transition: opacity 0.2s;
+}
+
+.task-item.done {
+  border-left-color: #22c55e;
+  opacity: 0.7;
+}
+
+.task-item.done .task-title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-content { flex: 1; }
+
+.task-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.task-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.task-meta {
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.task-status-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.badge-pending { background: #fef3c7; color: #92400e; }
+.badge-done    { background: #dcfce7; color: #166534; }
+
+.task-actions { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+
+/* ── Empty State ── */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  color: #999;
+}
+.empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+.empty-state p { font-size: 0.95rem; }
+
+/* ── Pagination ── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.page-info { font-size: 0.85rem; color: #555; }
+
+/* ── Loading ── */
+.loading { text-align: center; padding: 30px; color: #999; font-size: 0.9rem; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .app-header { padding: 12px 16px; }
+  .app-body { margin: 16px auto; }
+  .task-item { flex-direction: column; }
+  .task-actions { margin-top: 8px; }
+}
