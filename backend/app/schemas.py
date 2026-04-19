@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Optional, List
 
 
-# ── Auth schemas ──────────────────────────────────────────────────────────────
+#Auth schemas
 
 class UserCreate(BaseModel):
     email: EmailStr
@@ -43,7 +43,7 @@ class TokenData(BaseModel):
     user_id: Optional[int] = None
 
 
-# ── Task schemas ──────────────────────────────────────────────────────────────
+#Task schemas 
 
 class TaskCreate(BaseModel):
     title: str
