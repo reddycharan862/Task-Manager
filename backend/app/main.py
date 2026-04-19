@@ -30,7 +30,7 @@ app.add_middleware(
 app.include_router(auth_router.router)
 app.include_router(tasks_router.router)
 
-# ── Serve frontend static files ───────────────────────────────────────────────
+# Serve frontend static files
 FRONTEND_DIR = os.path.join(os.path.dirname(__file__), "../../frontend")
 
 if os.path.isdir(FRONTEND_DIR):
