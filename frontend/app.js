@@ -1,17 +1,17 @@
-// ── Config ────────────────────────────────────────────────────────────────────
+//Config
 const API = "";  // Same origin. Change to full URL if deploying frontend separately.
 
-// ── State ─────────────────────────────────────────────────────────────────────
+//State
 let token = localStorage.getItem("token");
 let currentUser = localStorage.getItem("username") || "";
 let currentPage = 1;
 let currentFilter = "";
 let totalPages = 1;
 
-// ── Init ──────────────────────────────────────────────────────────────────────
+//Init
 if (token) showApp();
 
-// ── Auth UI toggles ───────────────────────────────────────────────────────────
+//Auth UI toggles
 function showRegister() {
   document.getElementById("login-form").style.display = "none";
   document.getElementById("register-form").style.display = "block";
@@ -48,7 +48,7 @@ function logout() {
   showLogin();
 }
 
-// ── Register ──────────────────────────────────────────────────────────────────
+//Register
 async function register() {
   const email = document.getElementById("reg-email").value.trim();
   const username = document.getElementById("reg-username").value.trim();
@@ -82,7 +82,7 @@ async function register() {
   }
 }
 
-// ── Login ─────────────────────────────────────────────────────────────────────
+//Login
 async function login() {
   const username = document.getElementById("login-username").value.trim();
   const password = document.getElementById("login-password").value;
@@ -125,7 +125,7 @@ async function loginWithCredentials(username, password) {
   }
 }
 
-// Allow Enter key to submit forms
+//Allow Enter key to submit forms
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("login-password")?.addEventListener("keydown", e => {
     if (e.key === "Enter") login();
@@ -138,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// ── Tasks ─────────────────────────────────────────────────────────────────────
+//Tasks
 async function loadTasks() {
   const list = document.getElementById("task-list");
   list.innerHTML = `<div class="loading">Loading tasks…</div>`;
@@ -197,7 +197,7 @@ function renderTasks(data) {
     </div>
   `).join("");
 
-  // Pagination
+  //Pagination
   const pageInfo = document.getElementById("page-info");
   pageInfo.textContent = `Page ${data.page} of ${data.total_pages}  (${data.total} task${data.total !== 1 ? "s" : ""})`;
   pagination.style.display = data.total_pages > 1 ? "flex" : "none";
@@ -276,7 +276,7 @@ async function deleteTask(id) {
   }
 }
 
-// ── Filters & Pagination ──────────────────────────────────────────────────────
+//Filters & Pagination
 function setFilter(value) {
   currentFilter = value;
   currentPage = 1;
@@ -297,7 +297,7 @@ function changePage(dir) {
   loadTasks();
 }
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+//Helpers
 function escapeHtml(str) {
   const div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
