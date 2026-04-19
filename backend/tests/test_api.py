@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from app.main import app
 from app.database import Base, get_db
 
-# ── In-memory test database ───────────────────────────────────────────────────
+# In-memory test database 
 TEST_DATABASE_URL = "sqlite:///./test.db"
 
 test_engine = create_engine(
@@ -43,7 +43,7 @@ def client():
     return TestClient(app)
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+# Helpers 
 def create_user_and_login(client, suffix="1"):
     client.post("/register", json={
         "email": f"user{suffix}@test.com",
@@ -58,7 +58,7 @@ def auth_headers(token):
     return {"Authorization": f"Bearer {token}"}
 
 
-# ── Registration Tests ────────────────────────────────────────────────────────
+#  Registration Tests 
 class TestRegister:
     def test_register_success(self, client):
         res = client.post("/register", json={
@@ -92,7 +92,7 @@ class TestRegister:
         assert res.status_code == 422
 
 
-# ── Login Tests ───────────────────────────────────────────────────────────────
+# Login Tests 
 class TestLogin:
     def test_login_success(self, client):
         client.post("/register", json={"email": "u@test.com", "username": "loginuser", "password": "pass123"})
@@ -112,7 +112,7 @@ class TestLogin:
         assert res.status_code == 401
 
 
-# ── Task Tests ────────────────────────────────────────────────────────────────
+# Task Tests 
 class TestTasks:
     def test_create_task(self, client):
         token = create_user_and_login(client)
