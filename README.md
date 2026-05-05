@@ -7,7 +7,6 @@ A full-stack Task Manager application built with **FastAPI** (backend) and plain
 > **[https://your-app.onrender.com](https://task-manager-fc2d.onrender.com)**  
 > API Docs: **[https://your-app.onrender.com](https://task-manager-fc2d.onrender.com/docs)**
 
-*(Replace with your actual Render URL after deployment)*
 
 
 ## Tech Stack
@@ -151,7 +150,7 @@ DELETE |    /tasks/{id}    |    Delete a task                      |    Yes
    - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
 5. Add environment variables from your `.env`
 6. Click **Deploy**
-Your frontend is served automatically from the same service (FastAPI mounts the `frontend/` folder as static files).
+frontend is served automatically from the same service (FastAPI mounts the `frontend/` folder as static files).
 
 
 ## Security Notes
