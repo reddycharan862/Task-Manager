@@ -4,8 +4,8 @@ A full-stack Task Manager application built with **FastAPI** (backend) and plain
 
 ## Live Demo
 
-> **[https://your-app.onrender.com](https://task-manager-fc2d.onrender.com)**  
-> API Docs: **[https://your-app.onrender.com](https://task-manager-fc2d.onrender.com/docs)**
+> [https://your-app.onrender.com](https://task-manager-fc2d.onrender.com)  
+> API Docs: [https://your-app.onrender.com](https://task-manager-fc2d.onrender.com/docs)
 
 
 
