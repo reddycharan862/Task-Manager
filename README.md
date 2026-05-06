@@ -1,77 +1,29 @@
-# Task Manager
+Task Manager
+A simple Task Manager web application built with Python, FastAPI(backend) and plain HTML, CSS, and JavaScript(Frontend). Users can register, login, and manage their personal tasks.
 
-A full-stack Task Manager application built with **FastAPI** (backend) and plain **HTML/CSS/JS** (frontend). Features JWT authentication, SQLite persistence, pagination, and filtering.
+Live Demo
 
-## Live Demo
-
-> [https://your-app.onrender.com](https://task-manager-fc2d.onrender.com)  
-> API Docs: [https://your-app.onrender.com](https://task-manager-fc2d.onrender.com/docs)
-
+App: https://task-manager-fc2d.onrender.com
+API Docs: https://task-manager-fc2d.onrender.com/docs
 
 
-## Tech Stack
+Tech Stack
+Backend is built with FastAPI, SQLAlchemy, and SQLite database.
+Authentication is handled using JWT tokens and bcrypt for password hashing.
+Frontend is plain HTML, CSS, and JavaScript.
+Tests are written using Pytest.
 
-Layer         |     Technology
--------------------------------------------------------
-Backend       =     FastAPI, SQLAlchemy, Pydantic v2
-Auth          =     JWT (python-jose), bcrypt (passlib)
-Database      =     SQLite (dev) / PostgreSQL (prod)
-Frontend      =     HTML, CSS, Vanilla JavaScript
-Testing       =     Pytest, HTTPX
-Deploy        =     Render / Docker
+Project Structure
+The project is divided into two main folders. The backend folder contains the FastAPI application with all routes, models, schemas, and database logic. The frontend folder contains the HTML, CSS, and JavaScript files for the user interface.
 
+Environment Variables
+Copy .env.example to .env and fill in the values:
+bashcp backend/.env.example backend/.env
+VariableDescriptionExampleSECRET_KEYJWT signing key (keep secret!)openssl rand -hex 32ALGORITHMJWT algorithmHS256ACCESS_TOKEN_EXPIRE_MINUTESToken lifetime in minutes30DATABASE_URLSQLAlchemy DB connection stringsqlite:///./tasks.db
 
-
-##  Project Structure
-
-
-task-manager/
-├── backend/
-│   ├── app/
-│   │   ├── __init__.py
-│   │   ├── main.py          # FastAPI app + CORS + static files
-│   │   ├── database.py      # SQLAlchemy engine & session
-│   │   ├── models.py        # User & Task ORM models
-│   │   ├── schemas.py       # Pydantic request/response schemas
-│   │   ├── auth.py          # JWT & bcrypt helpers
-│   │   ├── dependencies.py  # get_current_user dependency
-│   │   └── routers/
-│   │       ├── auth.py      # POST /register, POST /login
-│   │       └── tasks.py     # CRUD /tasks endpoints
-│   ├── tests/
-│   │   └── test_api.py      # 15+ pytest test cases
-│   ├── requirements.txt
-│   ├── Dockerfile
-│   ├── .env.example
-│   └── .env                 # ← NOT committed
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
-├── docker-compose.yml
-└── README.md
-
-
-
-## Environment Variables
-
-Copy `.env.example` to `.env` and fill in values:
-
-cp backend/.env.example backend/.env
-
-Variable                    |    Description                              |    Example             
----------------------------------------------------------------------------------------------------
-SECRET_KEY                  |    JWT signing key (keep secret!)           |    openssl rand -hex 32 
-ALGORITHM                   |    JWT algorithm                            |    HS256 
-ACCESS_TOKEN_EXPIRE_MINUTES |    Token lifetime in minutes                |    30 
-DATABASE_URL                |    SQLAlchemy DB connection string          |    sqlite:///./tasks.db
-
-
-## Run Locally
-
-### Option A – Python (recommended for dev)
-
-# 1. Clone
+Run Locally
+Option A — Python (Recommended for Development)
+# 1. Clone the repository
 git clone https://github.com/YOUR_USERNAME/task-manager.git
 cd task-manager
 
@@ -86,81 +38,39 @@ pip install -r backend/requirements.txt
 cp backend/.env.example backend/.env
 # Edit backend/.env and set your SECRET_KEY
 
-# 5. Start the server (from repo root)
+# 5. Start the server
 cd backend
 uvicorn app.main:app --reload --port 8000
 
-Open **http://localhost:8000** → Frontend  
-Open **http://localhost:8000/docs** → Swagger UI
+Frontend → http://localhost:8000
+Swagger UI → http://localhost:8000/docs
 
 
+Option B — Docker Compose
+bashcp backend/.env.example backend/.env
+# Edit backend/.env and set your SECRET_KEY
 
-### Option B – Docker Compose
-
-cp backend/.env.example backend/.env
-# Edit backend/.env
 docker-compose up --build
-Open **http://localhost:8000**
+Open http://localhost:8000
 
-
-
-## Running Tests
-
-cd backend
+Running Tests
+bashcd backend
 pytest tests/ -v
+Expected output: 15+ tests passing 
 
-Expected output: **15+ tests passing** 
+API Endpoints
+POST /register is used to create a new user account.
+POST /login is used to login and receive a JWT token.
+POST /tasks is used to create a new task.
+GET /tasks is used to get all tasks with optional pagination and filtering.
+GET /tasks/{id} is used to get a specific task by its ID.
+PUT /tasks/{id} is used to update a task or mark it as completed.
+DELETE /tasks/{id} is used to delete a task.
 
+Deployment
 
-
-## API Endpoints
-
-### Authentication
-
-Method |   Endpoint    |   Description            | Auth Required
------------------------------------------------------------------
-POST   |   /register   |   Register new user      | NO
-POST   |   /login      |   Login → receive JWT    | No
-
-### Tasks
-
-Method |    Endpoint       |    Description                        |    Auth Required 
--------------------------------------------------------------------------------------
-POST   |    /tasks         |    Create a new task                  |    Yes
-GET    |    /tasks         |    Get all tasks (paginated/filtered) |    Yes
-GET    |    /tasks/{id}    |    Get a specific task                |    Yes
-PUT    |    /tasks/{id}    |    Update task (title/desc/complete)  |    Yes
-DELETE |    /tasks/{id}    |    Delete a task                      |    Yes
-
-**Query Parameters for GET /tasks:**
-- `page` (int, default: 1)
-- `page_size` (int, default: 8, max: 100)
-- `completed` (bool: `true` / `false`)
+The application is deployed on Render. The backend serves both the API and the frontend static files from the same service.
 
 
-
-## Deploy to Render
-
-1. Push this repo to GitHub (public)
-2. Go to [render.com](https://render.com) → **New Web Service**
-3. Connect your GitHub repo
-4. Configure:
-   - **Root Directory:** `backend`
-   - **Build Command:** `pip install -r requirements.txt`
-   - **Start Command:** `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
-5. Add environment variables from your `.env`
-6. Click **Deploy**
-frontend is served automatically from the same service (FastAPI mounts the `frontend/` folder as static files).
-
-
-## Security Notes
-
-- Passwords are hashed with **bcrypt** (never stored in plain text)
-- JWT tokens expire after `ACCESS_TOKEN_EXPIRE_MINUTES`
-- Users can **only access their own tasks** (enforced server-side)
-- `.env` is in `.gitignore` — secrets are never committed
-
-
-## License
-
-MIT
+Security Notes
+The .env file is not committed to GitHub for security reasons. A .env.example file is included to show what variables are needed. Secrets are never hardcoded in the source code.
